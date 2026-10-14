@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2963089408149571884}
   m_Layer: 0
-  m_Name: Obstaculo
+  m_Name: ObstaculoPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
