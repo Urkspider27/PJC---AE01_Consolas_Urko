@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +15,8 @@ public class GameManager : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private GameObject exitDoor; // La puerta o zona final
+    [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private Button restartButton;
 
     private void Awake()
     {
@@ -26,6 +31,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UpdateUI();
+
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(false);
+        }
     }
 
     public void AddCoin()
@@ -55,5 +65,26 @@ public class GameManager : MonoBehaviour
             exitDoor.SetActive(false);
             Debug.Log("¡Todas las monedas recogidas! La puerta está abierta.");
         }
+    }
+
+    public void LevelCompleted()
+    {
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
+
+        // Selección automática del botón para control por Gamepad sin ratón
+        if (EventSystem.current != null && restartButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(restartButton.gameObject);
+        }
+    }
+
+    public void RestartLevel()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }
