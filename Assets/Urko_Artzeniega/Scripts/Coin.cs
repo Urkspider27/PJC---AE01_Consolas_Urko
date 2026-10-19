@@ -21,7 +21,7 @@ public class Coin : MonoBehaviour
                 GameManager.Instance.AddCoin();
             }
 
-            // Destruimos la moneda recogida
+            // Destruye la moneda recogida al contacto
             Destroy(gameObject);
         }
     }

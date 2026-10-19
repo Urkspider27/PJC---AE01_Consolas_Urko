@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
 
     private void RestartGame()
     {
-        // Vuelve a cargar la escena activa
+        // Vuelve a cargar la escena activa (asi reinicias al morir)
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
